@@ -30,6 +30,7 @@
     "koa-joi-validate": "0.5.1",
     "koa-router": "7.4.0",
     "leaflet": "1.4.0",
+    "leaflet-draw": "^1.0.4",
     "lowdb": "^1.0.0",
     "winston": "3.2.1"
   },
