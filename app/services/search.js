@@ -24,6 +24,7 @@ export class SearchService {
    * @param { String } layerName Name of the geojson map layer for the given items
   */
   addGeoJsonItems (geojson, layerName) {
+    
     // Add items to searchbase
     this.searchbase = this.searchbase.concat(geojson.map((item) => {
       return { layerName, name: item.properties.name, id: item.properties.id }

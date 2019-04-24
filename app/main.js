@@ -50,7 +50,7 @@ class ViewController {
 
     // Initialize Layer Toggle Panel
     this.layerPanel = new LayerPanel("layer-panel-placeholder", {
-      data: { layerNames: [...this.locationPointTypes] },
+      data: { layerNames: ["area", ...this.locationPointTypes] },
       events: {
         layerToggle:
           // Toggle layer in map controller on "layerToggle" event
@@ -81,13 +81,13 @@ class ViewController {
     const regionsGeojson = await this.api.getRegions();
 
     // Add boundary data to search service
-    this.searchService.addGeoJsonItems(regionsGeojson, "region");
+    this.searchService.addGeoJsonItems(regionsGeojson, "area");
 
     // Add data to map
     this.mapComponent.addRegionGeojson(regionsGeojson);
 
     // Show region boundaries
-    this.layerPanel.toggleMapLayer("region");
+    this.layerPanel.toggleMapLayer("area");
 
     // Download location point geodata
     for (let locationType of this.locationPointTypes) {
