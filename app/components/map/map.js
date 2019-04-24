@@ -23,8 +23,8 @@ export class Map extends Component {
       center: [0, 0],
       zoom: 4,
       maxZoom: 7,
-      minZoom: 0
-      //maxBounds: [ [ 50, -30 ], [ -45, 100 ] ]
+      minZoom: 0,
+      zoomControl: true,
     });
 
     this.map.zoomControl.setPosition("bottomright"); // Position zoom control
@@ -36,6 +36,7 @@ export class Map extends Component {
       noWrap: true,
       minZoom: 0,
       maxZoom: 7,
+      bounds: [[-90,-180], [90,180]],
       attribution: "Maptiles by CryoFall"
     }).addTo(this.map);
 
