@@ -1,0 +1,25 @@
+@import url(https://fonts.googleapis.com/css?family=Lato|MedievalSharp);
+@import "~leaflet/dist/leaflet.css";
+@import './_variables.scss';
+
+/** Page Layout **/
+body {
+  margin: 0;
+  font-family: $fontNormal;
+  background: $lightDark;
+  overflow: hidden;
+  height: 100%;
+  width: 100%;
+}
+
+a {
+  color: $highlight;
+}
+
+#loading-container {
+  display: none;
+}
+
+#app-container {
+  display: block;
+}

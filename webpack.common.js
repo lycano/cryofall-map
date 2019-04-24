@@ -1,9 +1,6 @@
 const path = require("path");
-const BabiliPlugin = require("babili-webpack-plugin");
-const CleanWebpackPlugin = require("clean-webpack-plugin");
-const HtmlWebpackPlugin = require("html-webpack-plugin");
 
-const webpackConfig = {
+module.exports = {
   entry: "./app/main.js", // Start at app/main.js
   output: {
     path: path.resolve(__dirname, "public"),
@@ -36,21 +33,5 @@ const webpackConfig = {
     compress: true,
     port: 9000
   },
-  plugins: [
-    new CleanWebpackPlugin(),
-    new HtmlWebpackPlugin({
-      title: "Inofficial CryoFall Map",
-      description: "Explore the world of CryoFall!"
-    })
-  ]
+  plugins: []
 };
-
-if (process.env.NODE_ENV === "production") {
-  // Minify for production build
-  webpackConfig.plugins = [new BabiliPlugin({})];
-} else {
-  // Generate sourcemaps for dev build
-  webpackConfig.devtool = "eval-source-map";
-}
-
-module.exports = webpackConfig;

@@ -4,6 +4,7 @@ node_modules
 data
 .vscode
 public/bundle.js
+public/tiles
 database_setup/**/*.json
 *.log
 ignore
