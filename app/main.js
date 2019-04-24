@@ -5,6 +5,7 @@ import { ApiService } from "./services/api";
 
 import { Map } from "./components/map/map";
 import { InfoPanel } from "./components/info-panel/info-panel";
+import { LayerPanel } from "./components/layer-panel/layer-panel";
 
 /** Main UI Controller Class */
 class ViewController {
@@ -19,6 +20,7 @@ class ViewController {
       this.api = new ApiService("https://lycano.github.com/cryofall-map/");
     }
 
+    this.searchService = new SearchService();
     this.locationPointTypes = ["region", "location", "landmark"];
     this.initializeComponents();
     this.loadMapData();
@@ -39,6 +41,18 @@ class ViewController {
           const { name, id, type } = event.detail;
           this.infoComponent.showInfo(name, id, type);
         }
+      }
+    });
+
+    // Initialize Layer Toggle Panel
+    this.layerPanel = new LayerPanel("layer-panel-placeholder", {
+      data: { layerNames: [...this.locationPointTypes] },
+      events: {
+        layerToggle:
+          // Toggle layer in map controller on "layerToggle" event
+          event => {
+            this.mapComponent.toggleLayer(event.detail);
+          }
       }
     });
   }
