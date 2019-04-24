@@ -8,6 +8,8 @@ import { Map } from "./components/map/map";
 import { InfoPanel } from "./components/info-panel/info-panel";
 import { LayerPanel } from "./components/layer-panel/layer-panel";
 
+import { SearchBar } from './components/search-bar/search-bar';
+
 /** Main UI Controller Class */
 class ViewController {
   /** Initialize Application */
@@ -57,6 +59,20 @@ class ViewController {
           }
       }
     });
+
+    // Initialize Search Panel
+    this.searchBar = new SearchBar('search-panel-placeholder', {
+      data: { searchService: this.searchService },
+      events: { resultSelected: event => {
+        // Show result on map when selected from search results
+        let searchResult = event.detail
+        if (!this.mapComponent.isLayerShowing(searchResult.layerName)) {
+          // Show result layer if currently hidden
+          this.layerPanel.toggleMapLayer(searchResult.layerName)
+        }
+        this.mapComponent.selectLocation(searchResult.id, searchResult.layerName)
+      }}
+    })
   }
 
   /** Load map data from the API */

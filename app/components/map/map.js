@@ -27,7 +27,7 @@ export class Map extends Component {
       //maxBounds: [ [ 50, -30 ], [ -45, 100 ] ]
     });
 
-    this.map.zoomControl.setPosition("topleft"); // Position zoom control
+    this.map.zoomControl.setPosition("bottomright"); // Position zoom control
     this.layers = {}; // Map layer dict (key/value = title/layer)
     this.selectedRegion = null; // Store currently selected region
 
@@ -164,5 +164,29 @@ export class Map extends Component {
     } else {
       this.map.addLayer(layer);
     }
+  }
+
+  /** Check if layer is added to map  */
+  isLayerShowing (layerName) {
+    return this.map.hasLayer(this.layers[layerName])
+  }
+
+  selectLocation (id, layerName) {
+    // Find selected layer
+    const geojsonLayer = this.layers[layerName]
+    const sublayers = geojsonLayer.getLayers()
+    const selectedSublayer = sublayers.find(layer => {
+      return layer.feature.geometry.properties.id === id
+    })
+
+    // Zoom map to selected layer
+    if (selectedSublayer.feature.geometry.type === 'Point') {
+      this.map.flyTo(selectedSublayer.getLatLng(), 5)
+    } else {
+      this.map.flyToBounds(selectedSublayer.getBounds(), 5)
+    }
+
+    // Fire click event
+    selectedSublayer.fireEvent('click')
   }
 }
