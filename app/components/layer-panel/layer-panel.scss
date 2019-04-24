@@ -12,6 +12,7 @@
   background: $midDark;
   z-index: 1000;
   color: $offWhite;
+  font-family: $fontFancy;
 
   h3 {
     text-align: center;
@@ -29,7 +30,7 @@
     padding: 6px;
     cursor: pointer;
     user-select: none;
-    font-family: $fontNormal;
+    font-family: $fontFancy;
   }
 
   div.toggle-active {

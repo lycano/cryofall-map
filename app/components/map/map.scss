@@ -1,8 +1,7 @@
 @import '../../_variables.scss';
-@import '~leaflet-draw/dist/leaflet.draw.css';
 
 .map-container {
-  background: $lightDark;
+  background: $cryoBlue;
   height: 100%;
   width: 100%;
   position: relative;
