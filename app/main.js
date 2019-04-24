@@ -2,6 +2,7 @@ import "./main.scss";
 import template from "./main.html";
 
 import { ApiService } from "./services/api";
+import { SearchService } from "./services/search";
 
 import { Map } from "./components/map/map";
 import { InfoPanel } from "./components/info-panel/info-panel";
@@ -21,6 +22,7 @@ class ViewController {
     }
 
     this.searchService = new SearchService();
+
     this.locationPointTypes = ["region", "location", "landmark"];
     this.initializeComponents();
     this.loadMapData();
@@ -59,19 +61,25 @@ class ViewController {
 
   /** Load map data from the API */
   async loadMapData() {
-    // Download kingdom boundaries
+    // Download region boundaries
     const regionsGeojson = await this.api.getRegions();
+
+    // Add boundary data to search service
+    this.searchService.addGeoJsonItems(regionsGeojson, "region");
 
     // Add data to map
     this.mapComponent.addRegionGeojson(regionsGeojson);
 
     // Show region boundaries
-    this.mapComponent.toggleLayer("region");
+    this.layerPanel.toggleMapLayer("region");
 
     // Download location point geodata
     for (let locationType of this.locationPointTypes) {
-      // Download GeoJSON + metadata
+      // Download location type GeoJSON
       const geojson = await this.api.getLocations(locationType);
+
+      // Add location data to search service
+      this.searchService.addGeoJsonItems(geojson, locationType);
 
       // Add data to map
       this.mapComponent.addLocationGeojson(
@@ -79,9 +87,6 @@ class ViewController {
         geojson,
         this.getIconUrl(locationType)
       );
-
-      // Display location layer
-      this.mapComponent.toggleLayer(locationType);
     }
   }
 
