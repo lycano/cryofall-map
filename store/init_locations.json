@@ -1,0 +1,20 @@
+[
+    {
+        "st_asgeojson": {
+            "type": "Point",
+            "coordinates": [6.93517563739372, 19.7605121813031]
+        },
+        "name": "Blazewater Bay",
+        "type": "Region",
+        "gid": 266
+    },
+    {
+        "st_asgeojson": {
+            "type": "Point",
+            "coordinates": [22.93517563739372, 19.7605121813031]
+        },
+        "name": "Blazewater Bay 2",
+        "type": "Region",
+        "gid": 267
+    }
+]

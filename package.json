@@ -21,7 +21,9 @@
     "node": ">=7.6.0"
   },
   "dependencies": {
+    "@turf/turf": "^5.1.6",
     "axios": "0.18.0",
+    "dateformat": "^3.0.3",
     "dotenv": "7.0.0",
     "fuse.js": "3.4.4",
     "joi": "14.3.1",

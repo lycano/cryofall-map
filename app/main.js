@@ -18,7 +18,7 @@ class ViewController {
 
     // Initialize API service
     if (window.location.hostname === "localhost") {
-      this.api = new ApiService("http://localhost:9000/api/");
+      this.api = new ApiService("http://localhost:5000/");
     } else {
       this.api = new ApiService("https://lycano.github.com/cryofall-map/");
     }

@@ -1,6 +1,8 @@
 module.exports = {
-    "extends": "standad",
-    "rules": {
-        "space-before-function-paren": 0
-    }
+  extends: "standard",
+  rules: {
+    "space-before-function-paren": 0,
+    "prettier/prettier": ["error", { singleQuote: true }],
+    "code": 120
+  }
 };

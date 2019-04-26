@@ -146,7 +146,7 @@ export class Map extends Component {
   setHighlightedRegion(layer) {
     // If a layer is currently selected, deselect it
     if (this.selected) {
-      this.layers.kingdom.resetStyle(this.selected);
+      this.layers.region.resetStyle(this.selected);
     }
 
     // Select the provided region layer
